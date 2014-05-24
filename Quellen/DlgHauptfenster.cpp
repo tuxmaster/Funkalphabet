@@ -53,3 +53,17 @@ void DlgHauptfenster::Fehler(QString meldung)
 	QMessageBox::critical(this,tr("Fehler"),meldung);
 	exit(1);
 }
+void DlgHauptfenster::on_rkDIN_toggled(bool aktiv)
+{
+	if(aktiv)
+		NormGeaendert(DIN);
+}
+void DlgHauptfenster::on_rkITU_toggled(bool aktiv)
+{
+	if(aktiv)
+		NormGeaendert(ITU);
+}
+void DlgHauptfenster::NormGeaendert(Norm norm)
+{
+	qDebug()<<norm;
+}

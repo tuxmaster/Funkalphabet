@@ -23,14 +23,17 @@
 class DlgHauptfenster : public QMainWindow, private Ui::DlgHauptfenster
 {
 		Q_OBJECT
-
 	public:
 		explicit DlgHauptfenster(QWidget *eltern = 0);
-
+	private:
+		enum Norm{DIN,ITU};
+		void NormGeaendert(Norm norm);
 	protected:
 		void changeEvent(QEvent *ereignis);
 	private Q_SLOTS:
 		void Fehler(QString meldung);
+		void on_rkDIN_toggled(bool aktiv);
+		void on_rkITU_toggled(bool aktiv);
 };
 
 #endif // DLGHAUPTFENSTER_H
