@@ -19,11 +19,13 @@ TEMPLATE = app
 
 SOURCES += Quellen/Haupt.cpp\
 	   Quellen/DlgHauptfenster.cpp\
-	   Quellen/Hilfsfunktionen.cpp
+	   Quellen/Hilfsfunktionen.cpp \
+    Quellen/Datenmodell.cpp
 
 HEADERS  += Quellen/DlgHauptfenster.h \
 	    Quellen/Hilfsfunktionen.h\
-	    Quellen/Vorgaben.h
+	    Quellen/Vorgaben.h \
+    Quellen/Datenmodell.h
 
 FORMS    += Dialoge/Hauptfenster.ui
 

@@ -15,27 +15,27 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef DLGHAUPTFENSTER_H
-#define DLGHAUPTFENSTER_H
+#ifndef DATENMODELL_H
+#define DATENMODELL_H
 
-#include "ui_Hauptfenster.h"
+#include <QSqlQueryModel>
 #include "Vorgaben.h"
 
-class Datenmodell;
-class DlgHauptfenster : public QMainWindow, private Ui::DlgHauptfenster
+class Datenmodell : public QSqlQueryModel
 {
 		Q_OBJECT
 	public:
-		explicit	DlgHauptfenster(QWidget *eltern = 0);
+		explicit Datenmodell(QObject *eltern = 0);
 	private:
-		void		NormGeaendert(Norm norm);
-		Datenmodell	*K_Datenmodell;
-	protected:
-		void		changeEvent(QEvent *ereignis);
+		void	FehlerAufgetreten(QString fehler);
+		void	AbfrageStarten(QString welche);
+	Q_SIGNALS:
+		void	Fehler(QString meldung);
+	public Q_SLOTS:
+		void	NormGeaendert(Norm norm);
 	private Q_SLOTS:
-		void		Fehler(QString meldung);
-		void		on_rkDIN_toggled(bool aktiv);
-		void		on_rkITU_toggled(bool aktiv);
+		void	DB_Laden();
+
 };
 
-#endif // DLGHAUPTFENSTER_H
+#endif // DATENMODELL_H

@@ -23,6 +23,7 @@
 
 #include "DlgHauptfenster.h"
 #include "Hilfsfunktionen.h"
+#include "Datenmodell.h"
 
 DlgHauptfenster::DlgHauptfenster(QWidget *eltern) :	QMainWindow(eltern)
 {
@@ -34,6 +35,9 @@ DlgHauptfenster::DlgHauptfenster(QWidget *eltern) :	QMainWindow(eltern)
 		Fehler(trUtf8("Das Qt SQLite Modul ist nicht verfügbar. Ohne dieses ist ein Start nicht möglich."));
 		return;
 	}
+	K_Datenmodell= new Datenmodell(this);
+	connect(K_Datenmodell,SIGNAL(Fehler(QString)),this,SLOT(Fehler(QString)));
+	tbUebersicht->setModel(K_Datenmodell);
 }
 
 void DlgHauptfenster::changeEvent(QEvent *ereignis)
@@ -65,5 +69,5 @@ void DlgHauptfenster::on_rkITU_toggled(bool aktiv)
 }
 void DlgHauptfenster::NormGeaendert(Norm norm)
 {
-	qDebug()<<norm;
+	K_Datenmodell->NormGeaendert(norm);
 }

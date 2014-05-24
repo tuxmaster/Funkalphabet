@@ -17,5 +17,11 @@
 
 #ifndef VORGABEN_H
 #define VORGABEN_H
-#define PROGRAMM	"Funkalphabet"
+#define PROGRAMM		"Funkalphabet"
+#define DBVERBINDUNG	"FunkalphabetDBVerbdindung"
+#define DBPFAD			"./"
+#define DBDATEI			"Funkalphabet.dat"
+#define ABFRAGEDIN		"select Buchstabe,DIN from Funkalphabet"
+#define ABFRAGEITU		"select Buchstabe,Nato from Funkalphabet"
+enum					Norm{DIN,ITU};
 #endif // VORGABEN_H
