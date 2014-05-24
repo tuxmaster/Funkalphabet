@@ -31,3 +31,5 @@ Datenbank.commands = ./DB_erstellen.sh
 Datenbank.depends = $(TARGET)
 
 QMAKE_EXTRA_TARGETS += Datenbank
+
+RESOURCES += Bilder/Bilder.qrc
