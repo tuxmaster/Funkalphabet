@@ -15,6 +15,12 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+#include <QtSql>
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+	#include <QMessageBox>
+#endif
+#include <QtGui>
+
 #include "DlgHauptfenster.h"
 #include "Hilfsfunktionen.h"
 
@@ -22,6 +28,12 @@ DlgHauptfenster::DlgHauptfenster(QWidget *eltern) :	QMainWindow(eltern)
 {
 	setupUi(this);
 	Hilfsfunktionen::FensterZentrieren(this);
+	// Wenn kein SQlite da ist, braucht man nicht weitermachen
+	if(!QSqlDatabase::isDriverAvailable("QSQLITE"))
+	{
+		Fehler(trUtf8("Das Qt SQLite Modul ist nicht verfügbar. Ohne dieses ist ein Start nicht möglich."));
+		return;
+	}
 }
 
 void DlgHauptfenster::changeEvent(QEvent *ereignis)
@@ -35,4 +47,9 @@ void DlgHauptfenster::changeEvent(QEvent *ereignis)
 		default:
 			break;
 	}
+}
+void DlgHauptfenster::Fehler(QString meldung)
+{
+	QMessageBox::critical(this,tr("Fehler"),meldung);
+	exit(1);
 }

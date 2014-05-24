@@ -29,6 +29,8 @@ class DlgHauptfenster : public QMainWindow, private Ui::DlgHauptfenster
 
 	protected:
 		void changeEvent(QEvent *ereignis);
+	private Q_SLOTS:
+		void Fehler(QString meldung);
 };
 
 #endif // DLGHAUPTFENSTER_H
