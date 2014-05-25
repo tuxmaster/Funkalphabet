@@ -32,6 +32,7 @@ class Datenmodell : public QSqlQueryModel
 		void		AbfrageStarten(QString welche);
 	Q_SIGNALS:
 		void		Fehler(QString meldung);
+		void		Bereit();
 	public Q_SLOTS:
 		void		NormGeaendert(Norm norm);
 	private Q_SLOTS:

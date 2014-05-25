@@ -48,6 +48,7 @@ void Datenmodell::DB_Laden()
 		return;
 	}
 	AbfrageStarten(ABFRAGEDIN);
+	Q_EMIT Bereit();
 }
 void Datenmodell::FehlerAufgetreten(QString fehler)
 {

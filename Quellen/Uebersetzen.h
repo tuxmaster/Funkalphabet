@@ -15,31 +15,30 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef DLGHAUPTFENSTER_H
-#define DLGHAUPTFENSTER_H
+#ifndef UEBERSETZEN_H
+#define UEBERSETZEN_H
 
-#include "ui_Hauptfenster.h"
-#include "Vorgaben.h"
+#include <QObject>
+#include <QtCore>
 
-class Datenmodell;
-class Uebersetzen;
-class DlgHauptfenster : public QMainWindow, private Ui::DlgHauptfenster
+class Uebersetzen : public QObject
 {
 		Q_OBJECT
 	public:
-		explicit	DlgHauptfenster(QWidget *eltern = 0);
-	private:
-		void		NormGeaendert(Norm norm);
-		Datenmodell	*K_Datenmodell;
-		Uebersetzen	*K_Uebersetzen;
-	protected:
-		void		changeEvent(QEvent *ereignis);
+		explicit					Uebersetzen(QObject *eltern,const QAbstractTableModel *tabelle);
+									~Uebersetzen();
+
+	public Q_SLOTS:
+		void						Loslegen(const QString &text);
+	Q_SIGNALS:
+		void						Fertig(QStringList ergebnis);
 	private Q_SLOTS:
-		void		Fehler(QString meldung);
-		void		UebersetzungFertig(QStringList ergebnis);
-		void		on_rkDIN_toggled(bool aktiv);
-		void		on_rkITU_toggled(bool aktiv);
-		void		on_txtEingabe_editingFinished();
+		void						DatenGeaendert();
+	private:
+		QStringList					K_Wortliste;
+		QHash<QChar,QString>		*K_Hashtabelle;
+		const QAbstractTableModel	*K_Datenmodell;
+
 };
 
-#endif // DLGHAUPTFENSTER_H
+#endif // UEBERSETZEN_H

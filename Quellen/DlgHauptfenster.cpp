@@ -24,6 +24,7 @@
 #include "DlgHauptfenster.h"
 #include "Hilfsfunktionen.h"
 #include "Datenmodell.h"
+#include "Uebersetzen.h"
 
 DlgHauptfenster::DlgHauptfenster(QWidget *eltern) :	QMainWindow(eltern)
 {
@@ -39,9 +40,9 @@ DlgHauptfenster::DlgHauptfenster(QWidget *eltern) :	QMainWindow(eltern)
 	K_Datenmodell= new Datenmodell(this);
 	connect(K_Datenmodell,SIGNAL(Fehler(QString)),this,SLOT(Fehler(QString)));
 	tbUebersicht->setModel(K_Datenmodell);
-
+	K_Uebersetzen=new Uebersetzen(this,K_Datenmodell);
+	connect(K_Uebersetzen,SIGNAL(Fertig(QStringList)),this,SLOT(UebersetzungFertig(QStringList)));
 }
-
 void DlgHauptfenster::changeEvent(QEvent *ereignis)
 {
 	QMainWindow::changeEvent(ereignis);
@@ -72,10 +73,15 @@ void DlgHauptfenster::on_rkITU_toggled(bool aktiv)
 void DlgHauptfenster::NormGeaendert(Norm norm)
 {
 	K_Datenmodell->NormGeaendert(norm);
+	on_txtEingabe_editingFinished();
 }
 void DlgHauptfenster::on_txtEingabe_editingFinished()
 {
 	if(txtEingabe->text().isEmpty())
 		return;
-	txtAusgabe->setText(txtEingabe->text());
+	K_Uebersetzen->Loslegen(txtEingabe->text());
+}
+void DlgHauptfenster::UebersetzungFertig(QStringList ergebnis)
+{
+	txtAusgabe->setText(ergebnis.join("\r\n"));
 }
