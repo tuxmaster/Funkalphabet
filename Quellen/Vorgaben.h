@@ -17,6 +17,7 @@
 
 #ifndef VORGABEN_H
 #define VORGABEN_H
+#define VERSION			"0.0.1"
 #define PROGRAMM		"Funkalphabet"
 #define DBVERBINDUNG	"FunkalphabetDBVerbdindung"
 #define DBPFAD			"./"

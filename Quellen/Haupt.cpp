@@ -24,6 +24,7 @@
 int main(int argc, char *argv[])
 {
 	QApplication Anwendung(argc, argv);
+	Anwendung.setApplicationVersion(VERSION);
 	QTranslator QtUebersetzung;
 	QTranslator ProgrammUebersetzung;
 	QtUebersetzung.load(QString("qt_%1").arg(QLocale::system().name()),QLibraryInfo::location(QLibraryInfo::TranslationsPath));

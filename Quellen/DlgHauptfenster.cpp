@@ -29,6 +29,7 @@ DlgHauptfenster::DlgHauptfenster(QWidget *eltern) :	QMainWindow(eltern)
 {
 	setupUi(this);
 	Hilfsfunktionen::FensterZentrieren(this);
+	QMainWindow::statusBar()->showMessage(tr("Version: %1").arg(VERSION));
 	// Wenn kein SQlite da ist, braucht man nicht weitermachen
 	if(!QSqlDatabase::isDriverAvailable("QSQLITE"))
 	{
