@@ -36,6 +36,7 @@ class DlgHauptfenster : public QMainWindow, private Ui::DlgHauptfenster
 		void		Fehler(QString meldung);
 		void		on_rkDIN_toggled(bool aktiv);
 		void		on_rkITU_toggled(bool aktiv);
+		void		on_txtEingabe_editingFinished();
 };
 
 #endif // DLGHAUPTFENSTER_H

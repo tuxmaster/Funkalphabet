@@ -73,3 +73,9 @@ void DlgHauptfenster::NormGeaendert(Norm norm)
 {
 	K_Datenmodell->NormGeaendert(norm);
 }
+void DlgHauptfenster::on_txtEingabe_editingFinished()
+{
+	if(txtEingabe->text().isEmpty())
+		return;
+	txtAusgabe->setText(txtEingabe->text());
+}
