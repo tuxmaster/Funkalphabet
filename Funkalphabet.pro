@@ -37,3 +37,6 @@ Datenbank.depends = $(TARGET)
 QMAKE_EXTRA_TARGETS += Datenbank
 
 RESOURCES += Bilder/Bilder.qrc
+
+OTHER_FILES += \
+    Funkalphabet.desktop
