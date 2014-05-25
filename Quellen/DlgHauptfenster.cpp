@@ -39,6 +39,7 @@ DlgHauptfenster::DlgHauptfenster(QWidget *eltern) :	QMainWindow(eltern)
 	K_Datenmodell= new Datenmodell(this);
 	connect(K_Datenmodell,SIGNAL(Fehler(QString)),this,SLOT(Fehler(QString)));
 	tbUebersicht->setModel(K_Datenmodell);
+
 }
 
 void DlgHauptfenster::changeEvent(QEvent *ereignis)

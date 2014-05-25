@@ -65,3 +65,10 @@ void Datenmodell::AbfrageStarten(QString welche)
 	setHeaderData(0,Qt::Horizontal,tr("Zeichen"));
 	setHeaderData(1,Qt::Horizontal,tr("Wort"));
 }
+QVariant Datenmodell::data(const QModelIndex &wofuer, int rolle) const
+{
+	//Ich übernehme nur die Textausrichtung für die erste Spalte
+	if((rolle ==Qt::TextAlignmentRole) && (wofuer.column() ==0))
+		return Qt::AlignCenter;
+	return QSqlQueryModel::data(wofuer,rolle);
+}

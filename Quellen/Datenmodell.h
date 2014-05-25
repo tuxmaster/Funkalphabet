@@ -25,16 +25,17 @@ class Datenmodell : public QSqlQueryModel
 {
 		Q_OBJECT
 	public:
-		explicit Datenmodell(QObject *eltern = 0);
+		explicit	Datenmodell(QObject *eltern = 0);
+		QVariant	data(const QModelIndex &wofuer, int rolle) const;
 	private:
-		void	FehlerAufgetreten(QString fehler);
-		void	AbfrageStarten(QString welche);
+		void		FehlerAufgetreten(QString fehler);
+		void		AbfrageStarten(QString welche);
 	Q_SIGNALS:
-		void	Fehler(QString meldung);
+		void		Fehler(QString meldung);
 	public Q_SLOTS:
-		void	NormGeaendert(Norm norm);
+		void		NormGeaendert(Norm norm);
 	private Q_SLOTS:
-		void	DB_Laden();
+		void		DB_Laden();
 
 };
 
