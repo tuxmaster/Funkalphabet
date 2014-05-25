@@ -51,7 +51,7 @@ void Datenmodell::DB_Laden()
 }
 void Datenmodell::FehlerAufgetreten(QString fehler)
 {
-	Q_EMIT Fehler(tr("Datenbankfehler\r\n%1").arg(fehler));
+	Q_EMIT Fehler(tr("Datenbankfehler:\r\n%1").arg(fehler));
 }
 void Datenmodell::AbfrageStarten(QString welche)
 {
