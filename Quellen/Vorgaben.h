@@ -15,10 +15,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef VORGABEN_H
-#define VORGABEN_H
-#define VERSION			"0.0.2"
-#define PROGRAMM		"Funkalphabet"
+#ifndef VORGABENFunkalphabet_H
+#define VORGABENFunkalphabet_H
 #define DBVERBINDUNG	"FunkalphabetDBVerbdindung"
 #define DBPFAD			"./"
 #define DBDATEI			"Funkalphabet.dat"

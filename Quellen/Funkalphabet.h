@@ -15,34 +15,38 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#ifndef DATENMODELL_H
-#define DATENMODELL_H
+#ifndef DLGFUNKALPHABET_H
+#define DLGFUNKALPHABET_H
 
-#include <QSqlQueryModel>
+#include <QtDesigner/QDesignerExportWidget>
+#include "ui_Funkalphabet.h"
 #include "Vorgaben.h"
 
-class Datenmodell : public QSqlQueryModel
+class Datenmodell;
+class Uebersetzen;
+class QDESIGNER_WIDGET_EXPORT Funkalphabet : public QDialog, private Ui::DlgFunkalphabet
 {
 		Q_OBJECT
-	public:
-		explicit	Datenmodell(QObject *eltern = 0);
-		QVariant	data(const QModelIndex &wofuer, int rolle) const;
 
-	public Q_SLOTS:
-		void		NormGeaendert(Norm norm);
+	public:
+		explicit	Funkalphabet(QWidget *eltern = 0);
 
 	Q_SIGNALS:
 		void		Fehler(QString meldung);
-		void		Bereit();
+
+	protected:
+		void		changeEvent(QEvent *e);
 
 	private Q_SLOTS:
-		void		DB_Laden();
+		void		UebersetzungFertig(QStringList ergebnis);
+		void		on_rkDIN_toggled(bool aktiv);
+		void		on_rkITU_toggled(bool aktiv);
+		void		on_txtEingabe_editingFinished();
 
 	private:
-		void		FehlerAufgetreten(QString fehler);
-		void		AbfrageStarten(QString welche);
-
-
+		void		NormGeaendert(Norm norm);
+		Datenmodell	*K_Datenmodell;
+		Uebersetzen	*K_Uebersetzen;
 };
 
-#endif // DATENMODELL_H
+#endif // DLGFUNKALPHABET_H

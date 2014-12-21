@@ -14,22 +14,19 @@ MOC_DIR=tmp/moc
 OBJECTS_DIR=tmp/obj
 RCC_DIR=tmp/rcc
 
-TEMPLATE = app
+TEMPLATE = lib
 
 
-SOURCES += Quellen/Haupt.cpp\
-	   Quellen/DlgHauptfenster.cpp\
-	   Quellen/Hilfsfunktionen.cpp \
-    Quellen/Datenmodell.cpp \
-    Quellen/Uebersetzen.cpp
+SOURCES += Quellen/Datenmodell.cpp \
+    Quellen/Uebersetzen.cpp \
+    Quellen/Funkalphabet.cpp
 
-HEADERS  += Quellen/DlgHauptfenster.h \
-	    Quellen/Hilfsfunktionen.h\
-	    Quellen/Vorgaben.h \
+HEADERS  += Quellen/Vorgaben.h \
     Quellen/Datenmodell.h \
-    Quellen/Uebersetzen.h
+    Quellen/Uebersetzen.h \
+    Quellen/Funkalphabet.h
 
-FORMS    += Dialoge/Hauptfenster.ui
+FORMS    +=  Dialoge/Funkalphabet.ui
 
 Datenbank.commands = ./DB_erstellen.sh
 Datenbank.depends = $(TARGET)
@@ -37,6 +34,3 @@ Datenbank.depends = $(TARGET)
 QMAKE_EXTRA_TARGETS += Datenbank
 
 RESOURCES += Bilder/Bilder.qrc
-
-OTHER_FILES += \
-    Funkalphabet.desktop

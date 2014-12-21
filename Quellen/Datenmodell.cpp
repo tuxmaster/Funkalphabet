@@ -40,12 +40,15 @@ void Datenmodell::NormGeaendert(Norm norm)
 }
 void Datenmodell::DB_Laden()
 {
-	QSqlDatabase DB=QSqlDatabase::addDatabase("QSQLITE",DBVERBINDUNG);
-	DB.setDatabaseName(QString("%1/%2").arg(DBPFAD).arg(DBDATEI));
-	if(!DB.open())
+	if(!QSqlDatabase::contains(DBVERBINDUNG))
 	{
-		FehlerAufgetreten(DB.lastError().text());
-		return;
+		QSqlDatabase DB=QSqlDatabase::addDatabase("QSQLITE",DBVERBINDUNG);
+		DB.setDatabaseName(QString("%1/%2").arg(DBPFAD).arg(DBDATEI));
+		if(!DB.open())
+		{
+			FehlerAufgetreten(DB.lastError().text());
+			return;
+		}
 	}
 	AbfrageStarten(ABFRAGEDIN);
 	Q_EMIT Bereit();
