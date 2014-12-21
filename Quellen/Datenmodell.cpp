@@ -42,6 +42,12 @@ void Datenmodell::DB_Laden()
 {
 	if(!QSqlDatabase::contains(DBVERBINDUNG))
 	{
+		QFile Datei(QString("%1/%2").arg(DBPFAD).arg(DBDATEI));
+		if(!Datei.exists())
+		{
+			FehlerAufgetreten(tr("Die Datenbank %1 existiert nicht.").arg(Datei.fileName()));
+			return;
+		}
 		QSqlDatabase DB=QSqlDatabase::addDatabase("QSQLITE",DBVERBINDUNG);
 		DB.setDatabaseName(QString("%1/%2").arg(DBPFAD).arg(DBDATEI));
 		if(!DB.open())
@@ -60,6 +66,8 @@ void Datenmodell::FehlerAufgetreten(QString fehler)
 void Datenmodell::AbfrageStarten(QString welche)
 {
 	QSqlDatabase DB=QSqlDatabase::database(DBVERBINDUNG,false);
+	if(!DB.isOpen())
+		return;
 	setQuery(welche,DB);
 	if(lastError().isValid())
 	{

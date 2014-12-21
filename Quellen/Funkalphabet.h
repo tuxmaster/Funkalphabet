@@ -29,10 +29,11 @@ class QDESIGNER_WIDGET_EXPORT Funkalphabet : public QDialog, private Ui::DlgFunk
 		Q_OBJECT
 
 	public:
-		explicit	Funkalphabet(QWidget *eltern = 0);
+		explicit	Funkalphabet(QWidget *eltern,Norm welche=DIN);
 
 	Q_SIGNALS:
 		void		Fehler(QString meldung);
+		void		NormSpeichern(Norm die);
 
 	protected:
 		void		changeEvent(QEvent *e);

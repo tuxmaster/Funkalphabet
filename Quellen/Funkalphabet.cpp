@@ -22,7 +22,7 @@
 #include "Uebersetzen.h"
 #include "Funkalphabet.h"
 
-Funkalphabet::Funkalphabet(QWidget *eltern) :	QDialog(eltern)
+Funkalphabet::Funkalphabet(QWidget *eltern, Norm welche) :	QDialog(eltern)
 {
 	setupUi(this);
 	K_Datenmodell= new Datenmodell(this);
@@ -30,6 +30,10 @@ Funkalphabet::Funkalphabet(QWidget *eltern) :	QDialog(eltern)
 	tbUebersicht->setModel(K_Datenmodell);
 	K_Uebersetzen=new Uebersetzen(this,K_Datenmodell);
 	connect(K_Uebersetzen,SIGNAL(Fertig(QStringList)),this,SLOT(UebersetzungFertig(QStringList)));
+	if(welche==DIN)
+		rkDIN->setChecked(true);
+	else
+		rkITU->setChecked(true);
 }
 
 void Funkalphabet::changeEvent(QEvent *e)
@@ -56,6 +60,7 @@ void Funkalphabet::on_rkITU_toggled(bool aktiv)
 }
 void Funkalphabet::NormGeaendert(Norm norm)
 {
+	emit NormSpeichern(norm);
 	K_Datenmodell->NormGeaendert(norm);
 	on_txtEingabe_editingFinished();
 }
