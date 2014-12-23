@@ -43,9 +43,11 @@ class QDESIGNER_WIDGET_EXPORT Funkalphabet : public QDialog, private Ui::DlgFunk
 		void		on_rkDIN_toggled(bool aktiv);
 		void		on_rkITU_toggled(bool aktiv);
 		void		on_txtEingabe_editingFinished();
+		void		Starten();
 
 	private:
 		void		NormGeaendert(Norm norm);
+		Norm		K_Startnorm;
 		Datenmodell	*K_Datenmodell;
 		Uebersetzen	*K_Uebersetzen;
 };

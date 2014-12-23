@@ -30,10 +30,23 @@ Funkalphabet::Funkalphabet(QWidget *eltern, Norm welche) :	QDialog(eltern)
 	tbUebersicht->setModel(K_Datenmodell);
 	K_Uebersetzen=new Uebersetzen(this,K_Datenmodell);
 	connect(K_Uebersetzen,SIGNAL(Fertig(QStringList)),this,SLOT(UebersetzungFertig(QStringList)));
-	if(welche==DIN)
-		rkDIN->setChecked(true);
+	K_Startnorm=welche;
+	QTimer::singleShot(0,this,SLOT(Starten()));
+}
+void Funkalphabet::Starten()
+{
+	K_Datenmodell->DB_Laden();
+
+	if(K_Startnorm==DIN)
+	{
+		NormGeaendert(DIN);
+		rkDIN->setFocus();
+	}
 	else
+	{
 		rkITU->setChecked(true);
+		rkITU->setFocus();
+	}
 }
 
 void Funkalphabet::changeEvent(QEvent *e)

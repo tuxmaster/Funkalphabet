@@ -22,7 +22,6 @@
 
 Datenmodell::Datenmodell(QObject *eltern) :QSqlQueryModel(eltern)
 {
-	QTimer::singleShot(0,this,SLOT(DB_Laden()));
 }
 void Datenmodell::NormGeaendert(Norm norm)
 {
@@ -56,8 +55,6 @@ void Datenmodell::DB_Laden()
 			return;
 		}
 	}
-	AbfrageStarten(ABFRAGEDIN);
-	Q_EMIT Bereit();
 }
 void Datenmodell::FehlerAufgetreten(QString fehler)
 {

@@ -26,6 +26,7 @@ class Datenmodell : public QSqlQueryModel
 		Q_OBJECT
 	public:
 		explicit	Datenmodell(QObject *eltern = 0);
+		void		DB_Laden();
 		QVariant	data(const QModelIndex &wofuer, int rolle) const;
 
 	public Q_SLOTS:
@@ -33,10 +34,6 @@ class Datenmodell : public QSqlQueryModel
 
 	Q_SIGNALS:
 		void		Fehler(QString meldung);
-		void		Bereit();
-
-	private Q_SLOTS:
-		void		DB_Laden();
 
 	private:
 		void		FehlerAufgetreten(QString fehler);

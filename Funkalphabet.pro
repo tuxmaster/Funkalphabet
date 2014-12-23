@@ -8,6 +8,9 @@ QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
+VERSION = 0.0.2
+
 TARGET = Funkalphabet
 UI_DIR=tmp/ui
 MOC_DIR=tmp/moc
