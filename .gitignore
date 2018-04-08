@@ -1,0 +1,6 @@
+Makefile
+*pro.user*
+.qmake*
+Funkalphabet.dat
+tmp/
+bin/
