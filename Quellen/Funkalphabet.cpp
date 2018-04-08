@@ -17,6 +17,8 @@
 
 #include <QtSql>
 #include <QtGui>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
 
 #include "Datenmodell.h"
 #include "Uebersetzen.h"
@@ -35,6 +37,7 @@ Funkalphabet::Funkalphabet(QWidget *eltern, Norm welche) :	QDialog(eltern)
 	QPoint parentWindowCenter = eltern->window()->mapToGlobal(
 		eltern->window()->rect().center());
 	move(parentWindowCenter - dialogCenter);
+	K_Druckerauswahl=new QPrintDialog(this);
 	QTimer::singleShot(0,this,SLOT(Starten()));
 }
 void Funkalphabet::Starten()
@@ -79,15 +82,30 @@ void Funkalphabet::NormGeaendert(Norm norm)
 {
 	emit NormSpeichern(norm);
 	K_Datenmodell->NormGeaendert(norm);
-	on_txtEingabe_editingFinished();
+	on_txtEingabe_textChanged(QString());
 }
-void Funkalphabet::on_txtEingabe_editingFinished()
+void Funkalphabet::on_txtEingabe_textChanged(const QString&)
 {
 	if(txtEingabe->text().isEmpty())
+	{
+		txtAusgabe->clear();
 		return;
+	}
 	K_Uebersetzen->Loslegen(txtEingabe->text());
 }
 void Funkalphabet::UebersetzungFertig(QStringList ergebnis)
 {
 	txtAusgabe->setText(ergebnis.join("\r\n"));
+}
+void Funkalphabet::on_sfDrucken_clicked()
+{
+	QPrinter *Drucker=K_Druckerauswahl->printer();
+	Drucker->setCreator("Funkalphabet");
+	Drucker->setDocName("Funkalphabet");
+
+	K_Druckerauswahl->open(this,SLOT(DruckerAusgewaehlt(QPrinter*)));
+}
+void Funkalphabet::DruckerAusgewaehlt(QPrinter *drucker)
+{
+	qDebug()<<"Drucken";
 }

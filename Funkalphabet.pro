@@ -5,9 +5,9 @@
 #-------------------------------------------------
 
 include(Gemeinsam.pri)
-QT += sql
+QT += sql printsupport
 
-VERSION = 0.1.0
+VERSION = 0.2.0
 
 TARGET = Funkalphabet
 
@@ -27,7 +27,8 @@ Datenbank.depends = $(TARGET)
 
 QMAKE_EXTRA_TARGETS += Datenbank
 
-RESOURCES += Bilder/Bilder.qrc
+RESOURCES += Bilder/Bilder.qrc \
+    Datenbank.qrc
 
 DISTFILES += \
     Gemeinsam.pri

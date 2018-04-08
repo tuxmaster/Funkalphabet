@@ -24,9 +24,11 @@
 
 class Datenmodell;
 class Uebersetzen;
+class QPrintDialog;
+class QPrinter;
 class QDESIGNER_WIDGET_EXPORT Funkalphabet : public QDialog, private Ui::DlgFunkalphabet
 {
-		Q_OBJECT
+	Q_OBJECT
 
 	public:
 		explicit	Funkalphabet(QWidget *eltern,Norm welche=DIN);
@@ -36,20 +38,23 @@ class QDESIGNER_WIDGET_EXPORT Funkalphabet : public QDialog, private Ui::DlgFunk
 		void		NormSpeichern(Norm die);
 
 	protected:
-		void		changeEvent(QEvent *e);
+		void		changeEvent(QEvent *e) Q_DECL_OVERRIDE;
 
 	private Q_SLOTS:
 		void		UebersetzungFertig(QStringList ergebnis);
 		void		on_rkDIN_toggled(bool aktiv);
 		void		on_rkITU_toggled(bool aktiv);
-		void		on_txtEingabe_editingFinished();
+		void		on_txtEingabe_textChanged(const QString&);
+		void		on_sfDrucken_clicked();
 		void		Starten();
+		void		DruckerAusgewaehlt(QPrinter *drucker);
 
 	private:
 		void		NormGeaendert(Norm norm);
 		Norm		K_Startnorm;
 		Datenmodell	*K_Datenmodell;
 		Uebersetzen	*K_Uebersetzen;
+		QPrintDialog	*K_Druckerauswahl;
 };
 
 #endif // DLGFUNKALPHABET_H

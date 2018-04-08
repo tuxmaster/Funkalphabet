@@ -47,8 +47,9 @@ void Datenmodell::DB_Laden()
 			FehlerAufgetreten(tr("Die Datenbank %1 existiert nicht.").arg(Datei.fileName()));
 			return;
 		}
+		//Die DB für SQLite in eine Temoräte Datei schieben
 		QSqlDatabase DB=QSqlDatabase::addDatabase("QSQLITE",DBVERBINDUNG);
-		DB.setDatabaseName(QString("%1/%2").arg(DBPFAD).arg(DBDATEI));
+		DB.setDatabaseName(QTemporaryFile::createNativeFile(Datei)->fileName());
 		if(!DB.open())
 		{
 			FehlerAufgetreten(DB.lastError().text());
