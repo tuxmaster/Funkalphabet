@@ -18,7 +18,7 @@
 #ifndef FUNKALPHABETPLUGIN_H
 #define FUNKALPHABETPLUGIN_H
 
-#include <QDesignerCustomWidgetInterface>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 class FunkalphabetPlugin: public QObject, public QDesignerCustomWidgetInterface
 {
@@ -28,7 +28,7 @@ class FunkalphabetPlugin: public QObject, public QDesignerCustomWidgetInterface
 	Q_INTERFACES(QDesignerCustomWidgetInterface)
 
 	public:
-		FunkalphabetPlugin(QObject* eltern=0);
+		FunkalphabetPlugin(QObject* eltern=Q_NULLPTR);
 		 void		initialize(QDesignerFormEditorInterface *kern);
 		 bool		isInitialized()const{return K_geladen;}
 		 bool		isContainer()const{return false;}

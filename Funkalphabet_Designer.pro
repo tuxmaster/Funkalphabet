@@ -1,21 +1,21 @@
-QT      += core gui widgets designer
+include(Gemeinsam.pri)
+
+QT      += designer
 
 CONFIG	+= plugin
-
-TEMPLATE =lib
 TARGET=FunkalphabetDesigner
 
-UI_DIR=tmp/ui
-MOC_DIR=tmp/moc
-OBJECTS_DIR=tmp/obj
-RCC_DIR=tmp/rcc
 
-LIBS += -lFunkalphabet -L./
+LIBS += -lFunkalphabet -Lbin
 
-FORMS    += Dialoge/Funkalphabet.ui
+FORMS   += Dialoge/Funkalphabet.ui
 
-HEADERS +=  Quellen/FunkalphabetPlugin.h
+HEADERS += Quellen/FunkalphabetPlugin.h
 
 SOURCES += Quellen/FunkalphabetPlugin.cpp
 
 OTHER_FILES +=FunkalphabetDesigner.json
+
+DISTFILES += \
+    Gemeinsam.pri
+

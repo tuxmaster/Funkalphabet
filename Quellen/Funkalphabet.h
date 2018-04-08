@@ -18,7 +18,7 @@
 #ifndef DLGFUNKALPHABET_H
 #define DLGFUNKALPHABET_H
 
-#include <QtDesigner/QDesignerExportWidget>
+#include <QtUiPlugin/QDesignerExportWidget>
 #include "ui_Funkalphabet.h"
 #include "Vorgaben.h"
 

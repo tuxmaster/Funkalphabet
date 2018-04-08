@@ -4,21 +4,12 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+include(Gemeinsam.pri)
+QT += sql
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-
-VERSION = 0.0.2
+VERSION = 0.1.0
 
 TARGET = Funkalphabet
-UI_DIR=tmp/ui
-MOC_DIR=tmp/moc
-OBJECTS_DIR=tmp/obj
-RCC_DIR=tmp/rcc
-
-TEMPLATE = lib
-
 
 SOURCES += Quellen/Datenmodell.cpp \
     Quellen/Uebersetzen.cpp \
@@ -37,3 +28,6 @@ Datenbank.depends = $(TARGET)
 QMAKE_EXTRA_TARGETS += Datenbank
 
 RESOURCES += Bilder/Bilder.qrc
+
+DISTFILES += \
+    Gemeinsam.pri
